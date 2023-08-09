@@ -33,7 +33,7 @@ function Inventory() {
                     <input id="price" className="rounded-xl p-2" placeholder="Price"></input>
                     <div className="flex items-center">
                         <button className="flex justify-center bg-gradient-to-r from-[#e9e9e9] to-[#d9d8d8] hover:from-[#d2d2d2] hover:to-[#c1c1c1] py-2 px-4 text-[#6b6b6b] rounded-lg" onClick={addObject} type="submit">
-                            Add Object
+                            Add
                         </button>
                     </div>
                 </div>
@@ -46,7 +46,7 @@ function Inventory() {
                 <span className="px-5">Price</span>
             </div>
             {objects.map((object) => (
-                <ObjectRow key={object.id} name={object.name} description={object.description} type={object.type} owner={object.owner} price={object.price}/>
+                <ObjectRow key={object.id} id={object.id} name={object.name} description={object.description} type={object.type} owner={object.owner} price={object.price}/>
             ))}
         </div>
     );

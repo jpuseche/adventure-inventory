@@ -8,7 +8,7 @@ function ObjectRow(props) {
                 <span className="px-5">{props.owner}</span>
                 <span className="px-5">{props.price}</span>
                 <span className="flex">
-                    <a className="mr-8" href={"/detailed-object" + props.key}><img src={process.env.PUBLIC_URL + '/ellipsis-solid.svg'} width="25" height="25"/></a>
+                    <a className="mr-8" href={"/detailed-object"}><img src={process.env.PUBLIC_URL + '/ellipsis-solid.svg'} width="25" height="25"/></a>
                     <a href=""><img src={process.env.PUBLIC_URL + '/trash-solid.svg'} width="25" height="25"/></a>
                 </span>
             </div>

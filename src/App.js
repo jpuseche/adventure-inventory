@@ -1,14 +1,19 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Inventory from './sections/Inventory.js';
-
-let objects = [];
+import DetailedObject from "./sections/DetailedObject.js";
 
 function App() {
   return (
-    <section className="bg-[#FAEBE0] h-screen">
+    <div className="bg-[#FAEBE0] h-screen">
       <div className="flex justify-center text-white px-5 font-mono">
-        <Inventory/>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Inventory/>}/>
+            <Route path="/detailed-object" element={<DetailedObject/>}/>
+          </Routes>
+        </BrowserRouter>
       </div>
-    </section>
+    </div>
   );
 }
 
