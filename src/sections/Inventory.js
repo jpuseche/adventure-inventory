@@ -25,7 +25,7 @@ function Inventory() {
             </div>
             <div className="bg-gradient-to-r from-[#FFDC72] to-[#f0c132] rounded-xl p-5">
                 <span className="text-xl text-[#685313]">Input:</span>
-                <div className="grid grid-cols-5 gap-4 text-[#6b6b6b] mt-2">
+                <div className="grid grid-cols-6 gap-4 text-[#6b6b6b] mt-2">
                     <input id="name" className="rounded-xl p-2" placeholder="Name"></input>
                     <input id="description" className="rounded-xl p-2" placeholder="Description"></input>
                     <input id="type" className="rounded-xl p-2" placeholder="Type"></input>
@@ -38,7 +38,7 @@ function Inventory() {
                     </div>
                 </div>
             </div>
-            <div className="grid grid-cols-5 text-2xl gap-4 text-[#f9d158] rounded-xl w-full mt-10">
+            <div className="grid grid-cols-6 text-2xl gap-4 text-[#f9d158] rounded-xl w-full mt-10">
                 <span className="px-5">Name</span>
                 <span className="px-5">Description</span>
                 <span className="px-5">Type</span>
