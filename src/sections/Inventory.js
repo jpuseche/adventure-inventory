@@ -1,20 +1,42 @@
-import ObjectRow from "../components/ObjectRow"
+import ToolRow from "../components/ToolRow"
 import { useState } from "react";
-import {v4 as uuid} from 'uuid';
+import {v4 as uuid} from "uuid";
 
 function Inventory() {
     // rows state
-    const [objects, setObjects] = useState([]);
+    const [tools, setTools] = useState([]);
 
-    const addObject = () => {
-        let object = {};
-        object.id = uuid();
-        object.name = document.getElementById("name").value;
-        object.image = document.getElementById("image").value;
-        object.amount = document.getElementById("amount").value;
-        object.price = document.getElementById("price").value;
+    function createTool() {
+        let name = prompt("Enter tool name");
+        fetch("http://localhost:8000/tools", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({name}),
+        })
+          .then(response => {
+            return response.text();
+          })
+          .then(data => {
+            alert(data);
+          });
+      }
 
-        setObjects([...objects, object]);
+    const addTool = () => {
+        let tool = {};
+        tool.id = uuid();
+        tool.name = document.getElementById("name").value;
+        tool.image = document.getElementById("image").value;
+        tool.amount = document.getElementById("amount").value;
+        tool.price = document.getElementById("price").value;
+
+        document.getElementById("name").value = "";
+        document.getElementById("image").value = "";
+        document.getElementById("amount").value = "";
+        document.getElementById("price").value = "";
+
+        setTools([...tools, tool]);
     }
     
     return(
@@ -30,7 +52,7 @@ function Inventory() {
                     <input id="amount" className="rounded-xl p-2" placeholder="Amount"></input>
                     <input id="price" className="rounded-xl p-2" placeholder="Price"></input>
                     <div className="flex items-center">
-                        <button className="flex justify-center bg-gradient-to-r from-[#68B984] to-[#599e71] hover:from-[#5ba374] hover:to-[#4d8861] py-2 px-4 text-[#2b4b35] rounded-lg" onClick={addObject} type="submit">
+                        <button className="flex justify-center bg-gradient-to-r from-[#68B984] to-[#599e71] hover:from-[#5ba374] hover:to-[#4d8861] py-2 px-4 text-[#2b4b35] rounded-lg" onClick={createTool} type="submit">
                             Add
                         </button>
                     </div>
@@ -42,8 +64,8 @@ function Inventory() {
                 <span className="px-5">Amount</span>
                 <span className="px-5">Price</span>
             </div>
-            {objects.map((object) => (
-                <ObjectRow key={object.id} id={object.id} name={object.name} image={object.image} amount={object.amount} price={object.price}/>
+            {tools.map((tool) => (
+                <ToolRow key={tool.id} id={tool.id} name={tool.name} image={tool.image} amount={tool.amount} price={tool.price}/>
             ))}
         </div>
     );

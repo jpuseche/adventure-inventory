@@ -1,4 +1,4 @@
-function ObjectRow(props) {
+function ToolRow(props) {
     return(
         <div className="border-b-4 border-b-[rgb(249,209,88)] rounded-xl mt-4">
             <div className="grid grid-cols-6 gap-4 my-2 w-full">
@@ -16,4 +16,4 @@ function ObjectRow(props) {
     );
 }
 
-export default ObjectRow
+export default ToolRow

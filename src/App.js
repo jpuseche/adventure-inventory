@@ -4,7 +4,7 @@ import DetailedObject from "./sections/DetailedObject.js";
 
 function App() {
   return (
-    <div className="bg-[#CFFDE1] h-screen">
+    <div className="bg-[#eefcf3] h-screen">
       <div className="flex justify-center text-white px-5 font-mono">
         <BrowserRouter>
           <Routes>
