@@ -1,42 +1,64 @@
 import ToolRow from "../components/ToolRow"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {v4 as uuid} from "uuid";
 
 function Inventory() {
     // rows state
     const [tools, setTools] = useState([]);
+    useEffect(() => {
+        getTools();
+    }, []);
+
+    function getTools() {
+        fetch("http://localhost:8000/tools", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            setTools(data);
+        });
+    }
 
     function createTool() {
-        let name = prompt("Enter tool name");
+        let name = document.getElementById("name").value;
+        let imageSrc = document.getElementById("imageSrc").value;
+        let amount = document.getElementById("amount").value;
+        let price = document.getElementById("price").value;
+        let totalPrice = amount * price;
+
         fetch("http://localhost:8000/tools", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({name}),
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({name, imageSrc, amount, price, totalPrice}),
         })
-          .then(response => {
+        .then(response => {
             return response.text();
-          })
-          .then(data => {
-            alert(data);
-          });
-      }
+        })
+        .then(() => {
+            getTools();
+        });
+    }
 
-    const addTool = () => {
-        let tool = {};
-        tool.id = uuid();
-        tool.name = document.getElementById("name").value;
-        tool.image = document.getElementById("image").value;
-        tool.amount = document.getElementById("amount").value;
-        tool.price = document.getElementById("price").value;
-
-        document.getElementById("name").value = "";
-        document.getElementById("image").value = "";
-        document.getElementById("amount").value = "";
-        document.getElementById("price").value = "";
-
-        setTools([...tools, tool]);
+    function deleteTool(id) {
+        fetch(`http://localhost:8000/tools/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then(response => {
+            return response.text();
+        })
+        .then(() => {
+            getTools();
+        });
     }
     
     return(
@@ -48,7 +70,7 @@ function Inventory() {
                 <span className="text-xl text-[#685313]">Input:</span>
                 <div className="grid grid-cols-6 gap-4 text-[#353535] mt-2">
                     <input id="name" className="rounded-xl p-2" placeholder="Name"></input>
-                    <input id="image" className="rounded-xl p-2" placeholder="Image"></input>
+                    <input id="imageSrc" className="rounded-xl p-2" placeholder="Image Src"></input>
                     <input id="amount" className="rounded-xl p-2" placeholder="Amount"></input>
                     <input id="price" className="rounded-xl p-2" placeholder="Price"></input>
                     <div className="flex items-center">
@@ -63,9 +85,10 @@ function Inventory() {
                 <span className="px-5">Image</span>
                 <span className="px-5">Amount</span>
                 <span className="px-5">Price</span>
+                <span className="px-5">Total Price</span>
             </div>
             {tools.map((tool) => (
-                <ToolRow key={tool.id} id={tool.id} name={tool.name} image={tool.image} amount={tool.amount} price={tool.price}/>
+                <ToolRow key={tool.id} id={tool.id} name={tool.name} imageSrc={tool.image_src} amount={tool.amount} price={tool.price} totalPrice={tool.total_price} deleteTool={deleteTool}/>
             ))}
         </div>
     );
