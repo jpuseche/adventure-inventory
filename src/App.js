@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Inventory from './sections/Inventory.js';
-import DetailedObject from "./sections/DetailedObject.js";
 
 function App() {
   return (
@@ -11,7 +10,6 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Inventory/>}/>
-          <Route path="/detailed-object" element={<DetailedObject/>}/>
         </Routes>
       </BrowserRouter>
     </div>

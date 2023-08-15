@@ -1,8 +1,8 @@
 import ToolRow from "../components/ToolRow"
 import { useState, useEffect } from "react";
-import {v4 as uuid} from "uuid";
 
 function Inventory() {
+    console.log(process.env);
     // rows state
     const [tools, setTools] = useState([]);
     useEffect(() => {
