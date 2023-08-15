@@ -4,15 +4,16 @@ import DetailedObject from "./sections/DetailedObject.js";
 
 function App() {
   return (
-    <div className="bg-[#CFFDE1] h-screen">
-      <div className="flex justify-center text-white px-5 font-mono">
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Inventory/>}/>
-            <Route path="/detailed-object" element={<DetailedObject/>}/>
-          </Routes>
-        </BrowserRouter>
+    <div className="flex flex-col items-center font-mono">
+      <div className="flex w-full bg-[#212125] p-5">
+        <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FFDC72] to-[#f0c132]">Adventure Inventory</h1>
       </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Inventory/>}/>
+          <Route path="/detailed-object" element={<DetailedObject/>}/>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
