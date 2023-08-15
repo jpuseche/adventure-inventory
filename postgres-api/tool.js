@@ -19,7 +19,6 @@ tool.getTools = () => {
                 reject(error)
             }
             resolve(results.rows);
-            console.log(`Ammount of tools listed: ${results.rows.length}`);
         })
     })
 }
