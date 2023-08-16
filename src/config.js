@@ -1,6 +1,6 @@
 const prod = {
     url: {
-        API_URL: `https://adventure-inventory-api-production.up.railway.app/`
+        API_URL: `https://adventure-inventory-api-production.up.railway.app`
     }
 };
 const dev = {
