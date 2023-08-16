@@ -17,7 +17,7 @@ function Inventory() {
     }
 
     function getTools() {
-        fetch(`/tools`, {
+        fetch(`${config.url.API_URL}/tools`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -38,7 +38,7 @@ function Inventory() {
         let price = document.getElementById("price").value;
         let totalPrice = amount * price;
 
-        fetch(`/tools`, {
+        fetch(`${config.url.API_URL}/tools`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -55,7 +55,7 @@ function Inventory() {
     }
 
     function deleteTool(id) {
-        fetch(`/tools/${id}`, {
+        fetch(`${config.url.API_URL}/tools/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",

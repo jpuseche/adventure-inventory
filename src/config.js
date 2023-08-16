@@ -1,6 +1,6 @@
 const prod = {
     url: {
-        API_URL: ``
+        API_URL: `https://adventure-inventory-api.onrender.com`
     }
 };
 const dev = {
