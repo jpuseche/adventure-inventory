@@ -1,8 +1,8 @@
 import ToolRow from "../components/ToolRow"
 import { useState, useEffect } from "react";
+import { config } from "../config.js"
 
 function Inventory() {
-    console.log(process.env);
     // rows state
     const [tools, setTools] = useState([]);
     useEffect(() => {
@@ -17,7 +17,7 @@ function Inventory() {
     }
 
     function getTools() {
-        fetch("http://localhost:8000/tools", {
+        fetch(`${config.url.API_URL}/tools`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -38,7 +38,7 @@ function Inventory() {
         let price = document.getElementById("price").value;
         let totalPrice = amount * price;
 
-        fetch("http://localhost:8000/tools", {
+        fetch(`${config.url.API_URL}/tools`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -55,7 +55,7 @@ function Inventory() {
     }
 
     function deleteTool(id) {
-        fetch(`http://localhost:8000/tools/${id}`, {
+        fetch(`${config.url.API_URL}/tools/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
