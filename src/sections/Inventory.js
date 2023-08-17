@@ -1,6 +1,9 @@
 import ToolRow from "../components/ToolRow"
 import { useState, useEffect } from "react";
-import { config } from "../config.js"
+
+const apiUrl = process.env.API_URL;
+
+console.log(apiUrl);
 
 function Inventory() {
     // rows state
@@ -17,7 +20,7 @@ function Inventory() {
     }
 
     function getTools() {
-        fetch(`${config.url.API_URL}/tools`, {
+        fetch(`${apiUrl}/tools`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -38,7 +41,7 @@ function Inventory() {
         let price = document.getElementById("price").value;
         let totalPrice = amount * price;
 
-        fetch(`${config.url.API_URL}/tools`, {
+        fetch(`${apiUrl}/tools`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -55,7 +58,7 @@ function Inventory() {
     }
 
     function deleteTool(id) {
-        fetch(`${config.url.API_URL}/tools/${id}`, {
+        fetch(`${apiUrl}/tools/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -76,7 +79,7 @@ function Inventory() {
                     <div className="flex flex-col gap-4 text-white w-1/2">
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFDC72] to-[#f0c132] text-xl text-[#685313]">Add a new Tool:</span>
                         <input id="name" className="bg-[#212125] border-b border-b-[#FFDC72] p-2" placeholder="Name"></input>
-                        <input id="imageSrc" className="bg-[#212125] border-b border-b-[#FFDC72] p-2" placeholder="Image Src"></input>
+                        {/* <input id="imageSrc" className="bg-[#212125] border-b border-b-[#FFDC72] p-2" placeholder="Image Src"></input> */}
                         <input id="amount" className="bg-[#212125] border-b border-b-[#FFDC72] p-2" placeholder="Amount"></input>
                         <input id="price" className="bg-[#212125] border-b border-b-[#FFDC72] p-2" placeholder="Price"></input>
                         <button className="flex justify-center mt-6 text-2xl font-semibold bg-gradient-to-r from-[#FFDC72] to-[#f0c132] hover:scale-95 hover:transition py-2 px-4 text-[#685313] rounded-lg w-20" onClick={createTool} type="submit">
